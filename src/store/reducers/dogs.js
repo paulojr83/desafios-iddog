@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 export default function dogs(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "DOG_LIST":
-      break;
+      return {...state, dogs: action.data }
 
     default:
       return state;

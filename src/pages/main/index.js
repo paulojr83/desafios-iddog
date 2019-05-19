@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-export default class Main extends Component {
+import { connect } from "react-redux";
+class Main extends Component {
   state = {
     dogs: [],
     category: ""
@@ -9,11 +9,11 @@ export default class Main extends Component {
 
   async componentDidMount() {
     const data = await axios.get(
-      "https://api-iddog.idwall.co/feed?category=hound",
+      "https://api-iddog.idwall.co/feed",
       {
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJpZGRvZy1zZXJ2aWNlIiwic3ViIjoiNWNkZDRkNDU1YTk0MDEyYjI4YTVkMmE1IiwiaWF0IjoxNTU4MDA3MTA5LCJleHAiOjE1NTkzMDMxMDl9.8joVIVcjp3qvTI42k6IUfvaFeQ9x5eoKO5_3RCj0Tu0"
+            this.props.user.token
         }
       }
     );
@@ -21,6 +21,11 @@ export default class Main extends Component {
     const { list, category } = data.data;
     this.setState({ dogs: list, category });
   }
+
+  doFilterByCategory = () => {
+    
+  }
+
 
   dogList() {
     this.state.dogs.map(e => <li>{e}</li>);
@@ -34,3 +39,10 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  login: state.login
+});
+
+
+export default connect(mapStateToProps)(Main)
