@@ -1,9 +1,11 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
+
 import "../config/ReactotronConfig";
 
 import reducers from "./ducks";
 import sagas from "./sagas";
+
 const sagaMonitor =
   process.env.NODE_ENV === "development"
     ? console.tron.createSagaMonitor()
