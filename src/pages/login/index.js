@@ -31,39 +31,41 @@ class Login extends Component {
   render() {
     return (
       <div className="container">
-        <div className="card" />
-        <div className="card">
-          <h1 className="title">THE IDDOG</h1>
-          <form>
-            <div className="input-container">
-              <input
-                type="#{type}"
-                id="#{label}"
-                required="required"
-                onChange={e => this.setState({ email: e.target.value })}
-              />
-              <label htmlFor="#{label}">E-mail</label>
-              <div className="bar" />
-            </div>
+        <div className="card-container">
+          <div className="card" />
+          <div className="card">
+            <h1 className="title">THE IDDOG</h1>
+            <form>
+              <div className="input-container">
+                <input
+                  type="#{type}"
+                  id="#{label}"
+                  required="required"
+                  onChange={e => this.setState({ email: e.target.value })}
+                />
+                <label htmlFor="#{label}">E-mail</label>
+                <div className="bar" />
+              </div>
 
-            {this.props.login.error ? (
-              <span className="pen-title">
-                {this.props.login.error.message}
-              </span>
-            ) : (
-              ""
-            )}
-
-            <div className="button-container">
-              {!this.props.login.loading ? (
-                <button onClick={() => this.login()}>
-                  <span>Go</span>
-                </button>
+              {this.props.login.error ? (
+                <span className="pen-title">
+                  {this.props.login.error.message}
+                </span>
               ) : (
-                "Loading"
+                ""
               )}
-            </div>
-          </form>
+
+              <div className="button-container">
+                {!this.props.login.loading ? (
+                  <button onClick={() => this.login()}>
+                    <span>Go</span>
+                  </button>
+                ) : (
+                  "Loading"
+                )}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
